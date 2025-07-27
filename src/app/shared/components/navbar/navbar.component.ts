@@ -7,6 +7,8 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
 import {MatToolbar} from "@angular/material/toolbar";
 import {AuthService} from "../../../features/auth/auth.service";
 import {LanguageService} from "../../../core/services/language.service";
+import {MatTooltip} from "@angular/material/tooltip";
+import {TranslatePipe} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-navbar',
@@ -21,7 +23,9 @@ import {LanguageService} from "../../../core/services/language.service";
         RouterLink,
         MatButton,
         MatToolbar,
-        RouterLinkActive
+        RouterLinkActive,
+        MatTooltip,
+        TranslatePipe
     ],
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.scss'
@@ -35,9 +39,13 @@ export class NavbarComponent implements OnInit {
         this.language = this.languageService.getLanguage()
     }
 
-    toggleLanguage(lang: string) {
-        this.languageService.changeLanguage(lang);
-        this.language = lang;
+    toggleLanguage() {
+        this.language = this.language === 'en' ? 'ar' : 'en';
+        this.languageService.changeLanguage(this.language);
+    }
+
+    isAuthenticated(): boolean {
+        return this.authService.isAuthenticated();
     }
 
     logout() {

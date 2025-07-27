@@ -36,7 +36,43 @@
   border-radius: 4px;
 }
 
-/* Responsive design */
+.nav-links {
+  display: flex;
+  gap: 8px;
+  margin-left: 16px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.language-btn {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+
+  .language-text {
+    margin-left: 4px;
+    font-weight: 500;
+  }
+}
+
+.active-link {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+:host-context([dir="rtl"]) {
+  .language-btn .language-text {
+    margin-left: 0;
+    margin-right: 4px;
+  }
+
+  .nav-links {
+    margin-left: 0;
+    margin-right: 16px;
+  }
+}
+
 @media (max-width: 768px) {
   .nav-links {
     display: none;

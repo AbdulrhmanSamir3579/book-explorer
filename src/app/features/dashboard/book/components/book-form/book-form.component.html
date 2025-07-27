@@ -61,11 +61,13 @@
       [disabled]="bookForm.invalid || loading"
       class="submit-button">
       <mat-icon>{{ loading ? 'hourglass_top' : 'save' }}</mat-icon>
-      @if (loading) {
-        {{ (isEditMode ? 'Updating...' : 'Saving...') | translate }}
-      } @else {
-        {{ (isEditMode ? 'Update' : 'Save') | translate }}
-      }
+      <button mat-raised-button type="submit" color="primary">
+        @if (loading) {
+          {{ isEditMode ? ('Updating...' | translate) : ('Saving...' | translate) }}
+        } @else {
+          {{ isEditMode ? ('Update' | translate) : ('Save' | translate) }}
+        }
+      </button>
     </button>
   </div>
 </form>

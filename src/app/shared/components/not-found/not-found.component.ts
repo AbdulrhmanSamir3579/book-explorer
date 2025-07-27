@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {MatIcon} from '@angular/material/icon';
 import {MatButton} from '@angular/material/button';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-not-found',
@@ -14,21 +15,21 @@ import {MatButton} from '@angular/material/button';
 
         <h1 class="error-code">404</h1>
 
-        <h2 class="error-title">Page Not Found</h2>
+        <h2 class="error-title">{{ 'Page Not Found' | translate }}</h2>
 
         <p class="error-message">
-          Sorry, the page you are looking for doesn't exist or has been moved.
+          {{ 'Sorry, the page you are looking for doesn\\'t exist or has been moved.' | translate }}
         </p>
 
         <div class="action-buttons">
           <button mat-raised-button color="primary" (click)="goHome()">
             <mat-icon>home</mat-icon>
-            Go Home
+            {{ 'Go Home' | translate }}
           </button>
 
           <button mat-button (click)="goBack()">
             <mat-icon>arrow_back</mat-icon>
-            Go Back
+            {{ 'Go Back' | translate }}
           </button>
         </div>
       </div>
@@ -37,7 +38,8 @@ import {MatButton} from '@angular/material/button';
   standalone: true,
   imports: [
     MatIcon,
-    MatButton
+    MatButton,
+    TranslatePipe
   ],
   styles: [`
     .not-found-container {

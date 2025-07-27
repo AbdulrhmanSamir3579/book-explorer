@@ -52,5 +52,13 @@
   "Romance": "رومانسي",
   "Mystery": "غموض",
   "Thriller": "إثارة",
-  "Horror": "رعب"
+  "Horror": "رعب",
+  "MyApp": "تطبيقي",
+  "Dashboard": "لوحة التحكم",
+  "Books List": "قائمة الكتب",
+  "About": "حول",
+  "Profile": "الملف الشخصي",
+  "Settings": "الإعدادات",
+  "Logout": "تسجيل الخروج",
+  "Toggle language": "تبديل اللغة"
 }

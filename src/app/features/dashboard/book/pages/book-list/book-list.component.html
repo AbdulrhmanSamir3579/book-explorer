@@ -1,19 +1,19 @@
 <div class="books-container">
   <div class="header">
     <div style="display: flex; justify-content: space-between; align-items: center">
-      <h1 class="title">Book Explorer</h1>
+      <h1 class="title">{{ 'Book Explorer' | translate }}</h1>
       <button mat-flat-button color="primary" (click)="openAddBookDialog()" class="add-button">
         <mat-icon>add</mat-icon>
-        Add New Book
+        {{ 'Add New Book' | translate }}
       </button>
     </div>
     <div class="controls">
       <mat-form-field appearance="outline" floatLabel="always" class="search-field">
-        <mat-label>Search books</mat-label>
+        <mat-label>{{ 'Search books' | translate }}</mat-label>
         <input matInput
                [(ngModel)]="searchQuery"
                (input)="onSearchChange()"
-               placeholder="Title, author or category">
+               [placeholder]="'Title, author or category' | translate">
         <mat-icon matPrefix>search</mat-icon>
         @if (isSearching) {
           <mat-icon matSuffix class="search-spinner">
@@ -23,15 +23,15 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="sort-field">
-        <mat-label>Sort by</mat-label>
+        <mat-label>{{ 'Sort by' | translate }}</mat-label>
         <mat-select [(value)]="sortField" (selectionChange)="sortBooks()">
-          <mat-option value="title">Title</mat-option>
-          <mat-option value="author">Author</mat-option>
-          <mat-option value="price">Price</mat-option>
+          <mat-option value="title">{{ 'Title' | translate }}</mat-option>
+          <mat-option value="author">{{ 'Author' | translate }}</mat-option>
+          <mat-option value="price">{{ 'Price' | translate }}</mat-option>
         </mat-select>
       </mat-form-field>
 
-      <button mat-icon-button (click)="changeSortDirection()" [matTooltip]="sortDirection === 'asc' ? 'Ascending' : 'Descending'">
+      <button mat-icon-button (click)="changeSortDirection()" [matTooltip]="sortDirection === 'asc' ? ('Ascending' | translate) : ('Descending' | translate)">
         <mat-icon>{{ sortDirection === 'asc' ? 'arrow_upward' : 'arrow_downward' }}</mat-icon>
       </button>
     </div>
@@ -41,18 +41,18 @@
     @if (loading) {
       <div class="loading-state">
         <mat-spinner diameter="50"></mat-spinner>
-        <p>Loading your books...</p>
+        <p>{{ 'Loading your books...' | translate }}</p>
       </div>
     }
 
     @if (!loading && filteredBooks.length === 0) {
       <div class="empty-state">
         <mat-icon class="empty-icon">menu_book</mat-icon>
-        <h3>No books found</h3>
-        <p>Start by adding your first book</p>
+        <h3>{{ 'No books found' | translate }}</h3>
+        <p>{{ 'Start by adding your first book' | translate }}</p>
         <button mat-flat-button color="primary" (click)="openAddBookDialog()">
           <mat-icon>add</mat-icon>
-          Add Book
+          {{ 'Add Book' | translate }}
         </button>
       </div>
     }
@@ -70,7 +70,7 @@
               <div class="book-meta">
                 <span class="category-chip">
                   <mat-icon class="category-icon">category</mat-icon>
-                  {{book.category}}
+                  {{book.category | translate}}
                 </span>
                 <span class="price">
                   <mat-icon class="price-icon">attach_money</mat-icon>
@@ -79,8 +79,8 @@
               </div>
 
               <div class="description-container">
-                <p class="description" [title]="book.description || 'No description available'">
-                  {{ (book.description || 'No description available') | truncate:100 }}
+                <p class="description" [title]="book.description || ('No description available' | translate)">
+                  {{ (book.description || ('No description available' | translate)) | truncate:100 }}
                 </p>
               </div>
             </mat-card-content>

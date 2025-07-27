@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgIf } from '@angular/common';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ import { NgIf } from '@angular/common';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    NgIf
+    NgIf,
+    TranslatePipe
   ]
 })
 export class LoginComponent {

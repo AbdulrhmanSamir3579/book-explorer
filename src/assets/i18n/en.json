@@ -52,5 +52,13 @@
   "Romance": "Romance",
   "Mystery": "Mystery",
   "Thriller": "Thriller",
-  "Horror": "Horror"
+  "Horror": "Horror",
+  "MyApp": "MyApp",
+  "Dashboard": "Dashboard",
+  "Books List": "Books List",
+  "About": "About",
+  "Profile": "Profile",
+  "Settings": "Settings",
+  "Logout": "Logout",
+  "Toggle language": "Toggle language"
 }
