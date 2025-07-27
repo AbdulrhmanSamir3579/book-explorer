@@ -1,0 +1,71 @@
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()" class="book-form">
+  <div class="form-grid">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{ 'Title' | translate }}</mat-label>
+      <input matInput formControlName="title" required>
+      <mat-icon matSuffix>title</mat-icon>
+      <mat-error *ngIf="bookForm.get('title')?.hasError('required')">
+        {{ 'Title is required' | translate }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{ 'Author' | translate }}</mat-label>
+      <input matInput formControlName="author" required>
+      <mat-icon matSuffix>person</mat-icon>
+      <mat-error *ngIf="bookForm.get('author')?.hasError('required')">
+        {{ 'Author is required' | translate }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{ 'Category' | translate }}</mat-label>
+      <mat-select formControlName="category" required>
+        <mat-option *ngFor="let category of categories" [value]="category">
+          <div class="category-option">
+            <mat-icon class="category-icon">category</mat-icon>
+            {{ category | translate }}
+          </div>
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="bookForm.get('category')?.hasError('required')">
+        {{ 'Category is required' | translate }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{ 'Price' | translate }}</mat-label>
+      <input matInput type="number" formControlName="price" min="0" required>
+      <span matTextPrefix>$&nbsp;</span>
+      <mat-icon matSuffix>attach_money</mat-icon>
+      <mat-error *ngIf="bookForm.get('price')?.hasError('required')">
+        {{ 'Price is required' | translate }}
+      </mat-error>
+      <mat-error *ngIf="bookForm.get('price')?.hasError('min')">
+        {{ 'Price must be positive' | translate }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <mat-form-field appearance="outline" class="full-width description-field">
+    <mat-label>{{ 'Description' | translate }}</mat-label>
+    <textarea matInput formControlName="description" rows="5"></textarea>
+    <mat-icon matSuffix>notes</mat-icon>
+    <mat-hint>{{ 'Describe the book content' | translate }}</mat-hint>
+  </mat-form-field>
+  <div class="form-actions">
+    <button mat-stroked-button type="button" (click)="onCancel()" [disabled]="loading">
+      <mat-icon>cancel</mat-icon>
+      {{ 'Cancel' | translate }}
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      [disabled]="bookForm.invalid || loading"
+      class="submit-button">
+      <mat-icon>{{ loading ? 'hourglass_top' : 'save' }}</mat-icon>
+      @if (loading) {
+        {{ (isEditMode ? 'Updating...' : 'Saving...') | translate }}
+      } @else {
+        {{ (isEditMode ? 'Update' : 'Save') | translate }}
+      }
+    </button>
+  </div>
+</form>

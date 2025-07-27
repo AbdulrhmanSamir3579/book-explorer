@@ -1,0 +1,101 @@
+<div class="books-container">
+  <div class="header">
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <h1 class="title">Book Explorer</h1>
+      <button mat-flat-button color="primary" (click)="openAddBookDialog()" class="add-button">
+        <mat-icon>add</mat-icon>
+        Add New Book
+      </button>
+    </div>
+    <div class="controls">
+      <mat-form-field appearance="outline" floatLabel="always" class="search-field">
+        <mat-label>Search books</mat-label>
+        <input matInput
+               [(ngModel)]="searchQuery"
+               (input)="onSearchChange()"
+               placeholder="Title, author or category">
+        <mat-icon matPrefix>search</mat-icon>
+        @if (isSearching) {
+          <mat-icon matSuffix class="search-spinner">
+            <mat-spinner diameter="20"></mat-spinner>
+          </mat-icon>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="sort-field">
+        <mat-label>Sort by</mat-label>
+        <mat-select [(value)]="sortField" (selectionChange)="sortBooks()">
+          <mat-option value="title">Title</mat-option>
+          <mat-option value="author">Author</mat-option>
+          <mat-option value="price">Price</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-icon-button (click)="changeSortDirection()" [matTooltip]="sortDirection === 'asc' ? 'Ascending' : 'Descending'">
+        <mat-icon>{{ sortDirection === 'asc' ? 'arrow_upward' : 'arrow_downward' }}</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="content">
+    @if (loading) {
+      <div class="loading-state">
+        <mat-spinner diameter="50"></mat-spinner>
+        <p>Loading your books...</p>
+      </div>
+    }
+
+    @if (!loading && filteredBooks.length === 0) {
+      <div class="empty-state">
+        <mat-icon class="empty-icon">menu_book</mat-icon>
+        <h3>No books found</h3>
+        <p>Start by adding your first book</p>
+        <button mat-flat-button color="primary" (click)="openAddBookDialog()">
+          <mat-icon>add</mat-icon>
+          Add Book
+        </button>
+      </div>
+    }
+
+    @if (!loading && filteredBooks.length > 0) {
+      <div class="books-grid">
+        @for (book of filteredBooks; track book._id) {
+          <mat-card class="book-card">
+            <mat-card-header>
+              <mat-card-title>{{book.title}}</mat-card-title>
+              <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+              <div class="book-meta">
+                <span class="category-chip">
+                  <mat-icon class="category-icon">category</mat-icon>
+                  {{book.category}}
+                </span>
+                <span class="price">
+                  <mat-icon class="price-icon">attach_money</mat-icon>
+                  {{book.price | number:'1.2-2'}}
+                </span>
+              </div>
+
+              <div class="description-container">
+                <p class="description" [title]="book.description || 'No description available'">
+                  {{ (book.description || 'No description available') | truncate:100 }}
+                </p>
+              </div>
+            </mat-card-content>
+
+            <mat-card-actions align="end">
+              <button mat-icon-button color="primary" (click)="openEditDialog(book)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteBook(book._id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        }
+      </div>
+    }
+  </div>
+</div>

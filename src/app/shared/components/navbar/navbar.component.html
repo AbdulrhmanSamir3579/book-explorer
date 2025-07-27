@@ -1,0 +1,48 @@
+<mat-toolbar color="primary">
+  <span class="brand">MyApp</span>
+  <div class="nav-links">
+    <button mat-button routerLink="/dashboard" routerLinkActive="active-link">
+      <mat-icon>dashboard</mat-icon>
+      Dashboard
+    </button>
+    <button mat-button routerLink="/books-list" routerLinkActive="active-link">
+      <mat-icon>library_books</mat-icon>
+      Books List
+    </button>
+    <button mat-button routerLink="/about" routerLinkActive="active-link">
+      <mat-icon>info</mat-icon>
+      About
+    </button>
+  </div>
+  <div class="spacer"></div>
+  <button mat-icon-button [matMenuTriggerFor]="languageMenu" class="language-btn">
+    <mat-icon>language</mat-icon>
+    <span class="language-text">{{ language }}</span>
+  </button>
+  <mat-menu #languageMenu="matMenu">
+    <button mat-menu-item (click)="toggleLanguage('en')">
+      <span>En</span>
+    </button>
+    <button mat-menu-item (click)="toggleLanguage('ar')">
+      <span>Ar</span>
+    </button>
+  </mat-menu>
+  <button mat-icon-button [matMenuTriggerFor]="userMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>settings</mat-icon>
+      <span>Settings</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

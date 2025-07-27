@@ -1,0 +1,48 @@
+.brand {
+  font-size: 18px;
+  font-weight: 500;
+  margin-right: 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-links button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.language-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-right: 10px;
+}
+
+.language-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.active-link {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .brand {
+    margin-right: 10px;
+  }
+}

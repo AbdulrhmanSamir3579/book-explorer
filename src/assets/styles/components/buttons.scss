@@ -1,0 +1,109 @@
+@use 'abstracts' as *;
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  min-width: 16rem;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  border: none;
+  text-transform: capitalize;
+
+  // Inactive state (glass morphism style)
+  background-color: rgba(255, 255, 255, 0.25);
+  color: $color-text;
+
+  // Active state modifier
+  &-lg {
+    font-size: 2.2rem;
+    padding-inline: 7.25rem;
+    padding-block: 2.15rem;
+    font-weight: 600;
+  }
+
+  // Active state modifier
+  &-active {
+    background-color: $color-light-green;
+    opacity: 1;
+
+    &:hover {
+      background-color: rgba(132, 188, 71, 0.9);
+    }
+  }
+
+  &-upload {
+    background-color: $color-text;
+    color: $color-dark-green;
+    opacity: 1;
+    svg{
+      path{
+        transition: stroke .2s ease-in-out;
+      }
+    }
+
+    &:hover {
+      background-color: rgba(132, 188, 71, 0.9);
+      color: $color-text;
+      svg{
+        path{
+          stroke: $color-text;
+        }
+      }
+    }
+  }
+
+  // Hover effects for both states
+  &:hover {
+    transform: translateY(-0.1rem);
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      animation: shine 1.5s infinite;
+    }
+  }
+
+  // Active state animation
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Button group container
+.btn-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+// Icon and text alignment
+.btn__icon {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.btn__text {
+  white-space: nowrap;
+}
+
+// Shine animation
+@keyframes shine {
+  100% {
+    left: 100%;
+  }
+}
