@@ -1,0 +1,93 @@
+<div class="home-container">
+  <mat-card class="welcome-card">
+    <mat-card-header>
+      <mat-card-title>{{ 'Welcome to Book Explorer' | translate }}</mat-card-title>
+      <mat-card-subtitle>{{ 'A complete Angular 18 CRUD application' | translate }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="assets/images/hero.png" alt="Books collection">
+  </mat-card>
+
+  <div class="features-grid">
+    <mat-card class="feature-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon class="feature-icon">security</mat-icon>
+          {{ 'Authentication System' | translate }}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <ul>
+          <li>{{ 'Login/Logout functionality' | translate }}</li>
+          <li>{{ 'Route protection with AuthGuard' | translate }}</li>
+          <li>{{ 'Token stored in localStorage' | translate }}</li>
+        </ul>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" routerLink="/auth">
+          {{ 'Try Login' | translate }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="feature-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon class="feature-icon">menu_book</mat-icon>
+          {{ 'Book Management' | translate }}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <ul>
+          <li>{{ 'Complete CRUD operations' | translate }}</li>
+          <li>{{ 'Reusable form component' | translate }}</li>
+          <li>{{ 'Search and sort functionality' | translate }}</li>
+          <li>{{ 'Responsive card layout' | translate }}</li>
+        </ul>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" routerLink="/books-list" [disabled]="!isAuthenticated()">
+          {{ 'Explore Books' | translate }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="feature-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon class="feature-icon">error_outline</mat-icon>
+          {{ 'Error Handling' | translate }}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <ul>
+          <li>{{ 'Global HTTP interceptor' | translate }}</li>
+          <li>{{ 'User-friendly error messages' | translate }}</li>
+          <li>{{ 'Handles 401, 404, 500 errors' | translate }}</li>
+          <li>{{ 'Automatic token refresh' | translate }}</li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="feature-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon class="feature-icon">verified</mat-icon>
+          {{ 'Testing' | translate }}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <ul>
+          <li>{{ 'Unit tests for book form component' | translate }}</li>
+          <li>{{ 'Test coverage for services' | translate }}</li>
+          <li>{{ 'Form validation testing' | translate }}</li>
+          <li>{{ 'API interaction tests' | translate }}</li>
+        </ul>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="runTests()">
+          {{ 'Run Tests' | translate }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
